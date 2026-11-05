@@ -1,90 +1,171 @@
 <!DOCTYPE html>
-<html lang="en"> <!-- lo que esta en azul puede ser un atributo -->
-<!-- Esto es un comentario -->
+<html lang="es">
 
 <head>
-    <meta charset="UTF-8"> <!-- ESto es el encoding -->
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dolarito</title>
-    <link rel="stylesheet" href="css/styles.css">
+    <title>Dolarito | Controla tus finanzas personales y familiares</title>
+    <meta name="description" content="Dolarito es una aplicación móvil hecha en Flutter para controlar tus ingresos, gastos, tarjetas y ahorros en un solo lugar.">
+    <meta name="theme-color" content="#0F4C3A">
+    <link rel="icon" type="image/png" href="imagenes/dolarito-icono-1024.png">
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 
 <body>
-    <header>
-        <h1 class="titulo">Bienvenido a Dolarito</h1>
-    </header>
-    <img src="imagenes/dolarito-icono-1024.png" alt="Icono de Dolarito">
-    
-    <section>
-        <p>Dirigido por: Anthony Pambi</p>
-    </section>
-    
-    <!--
-    version: "2.39"
-    unicode: "fd19"
-    -->
-    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
-        <path d="M12 2a5 5 0 1 1 -5 5l.005 -.217a5 5 0 0 1 4.995 -4.783z" />
-        <path d="M14 14a5 5 0 0 1 5 5v1a2 2 0 0 1 -2 2h-10a2 2 0 0 1 -2 -2v-1a5 5 0 0 1 5 -5h4z" />
-        
-    </svg>
-    <nav>
-        <ul>
-            <li><a href="index.html">Inicio</a></li>
-            <li><a href="unidades.html">Unidades</a></li>
-            <li><a href="contacto.html">Contacto</a></li>
-            <li><a href="acerca.html">Acerca de</a></li>
-        </ul>
-  
-    <h2 class="titulo">Sobre el proyecto</h2>
-    <img src="imagenes/Gemini_Generated_Image_ey1bgjey1bgjey1b.jpg">
-    <p>Dolarito es una aplicación web que permite a los usuarios gestionar sus finanzas personales de manera eficiente y
-        sencilla. Con Dolarito, los usuarios pueden realizar un seguimiento de sus ingresos y gastos, establecer
-        presupuestos y obtener informes detallados sobre su situación financiera.</p>
-    <h2>Necesitas ayuda en tus finanzas</h2>
-    <p>Desarrollo de una aplicación para gestionar finanzas personales</p>
-    <h3>Stack Tecnologico</h3>
-    <p></p>
-    <ul>
-        <li>HTML</li>
-        <p>Lenguaje de marcado para estructurar el contenido de la web</p>
-        <li>CSS</li>
-        <p>Lenguaje de estilo para definir la apariencia de la web</p>
-        <li>JavaScript</li>
-        <p>Lenguaje de programación para agregar funcionalidad interactiva a la web</p>
-        <li>PHP</li>
-        <p>Lenguaje de programación del lado del servidor para procesar datos y generar contenido dinámico</p>
-    </ul>
-    <section>
-        <h2>Contacto</h2>
-        <nav>
-            <ul>
-                <li><a href="unidades.html">Unidades</a></li>
-            </ul>
-        </nav>
-        
-        <p>Si tienes alguna pregunta o necesitas ayuda, no dudes en contactarnos a través de nuestro correo electrónico:
-            contacto@dolarito.com</p>
-    </section>
-    <form action="procesar_formulario.php" method="post">
-        <label for="nombre">Nombre:</label>
-        <input type="text" placeholder="Ingresa tu nombre" id="nombre" name="nombre" required><br><br>
+    <a class="salto" href="#contenido">Saltar al contenido</a>
 
-        <label for="email">Correo electrónico:</label>
-        <input type="email" placeholder="Ingresa tu correo electrónico" id="email" name="email" required><br><br>
-
-        <label for="mensaje">Mensaje:</label><br>
-        <textarea placeholder="Escribe tu mensaje" id="mensaje" name="mensaje" rows="4" cols="50" required></textarea><br><br>
-
-        <div>
-            label 
+    <header class="cabecera">
+        <div class="contenedor cabecera__interior">
+            <a class="marca" href="index.html">Dolarito</a>
+            <nav aria-label="Principal">
+                <ul class="menu">
+                    <li><a href="index.html" aria-current="page">Inicio</a></li>
+                    <li><a href="unidades.html">Unidades</a></li>
+                    <li><a href="#contacto">Contacto</a></li>
+                    <li><a href="acerca.html">Acerca de</a></li>
+                </ul>
+            </nav>
         </div>
-        <input type="submit" value="Enviar">
-    </form>
-    </section>
-    <footer>
-        <p>© 2026 Dolarito. Todos los derechos reservados.</p>
+    </header>
+
+    <main id="contenido">
+
+        <section class="portada" aria-labelledby="titulo-portada">
+            <div class="contenedor portada__interior">
+                <div class="portada__texto">
+                    <h1 class="titulo" id="titulo-portada">Bienvenido a Dolarito</h1>
+                    <p class="portada__lema">Tus finanzas personales y familiares, claras y bajo control, desde tu celular.</p>
+                    <p class="autor">Dirigido por Anthony Pambi</p>
+                </div>
+                <img class="portada__icono" src="imagenes/dolarito-icono-1024.png" alt="Icono de Dolarito" width="1024" height="1024">
+            </div>
+        </section>
+
+        <section class="seccion" id="proyecto" aria-labelledby="titulo-proyecto">
+            <div class="contenedor">
+                <h2 class="titulo" id="titulo-proyecto">Sobre el proyecto</h2>
+                <figure class="figura">
+                    <img src="imagenes/Gemini_Generated_Image_ey1bgjey1bgjey1b.jpg" alt="Imagen de la aplicación Dolarito" loading="lazy">
+                </figure>
+                <p>Dolarito es una aplicación móvil desarrollada en Flutter que permite gestionar tus finanzas personales de manera eficiente y sencilla. Con Dolarito puedes llevar el registro de tus ingresos y gastos, establecer presupuestos y consultar informes detallados de tu situación financiera.</p>
+            </div>
+        </section>
+
+        <section class="seccion seccion--suave" id="beneficios" aria-labelledby="titulo-ayuda">
+            <div class="contenedor">
+                <h2 class="titulo" id="titulo-ayuda">¿Necesitas ayuda con tus finanzas?</h2>
+                <p>Una aplicación para organizar tu dinero y el de tu familia sin complicaciones.</p>
+
+                <h3>Beneficios</h3>
+                <dl class="lista-datos lista-datos--dos">
+                    <div>
+                        <dt>Cuenta</dt>
+                        <dd>Reúne tus saldos y movimientos en un solo lugar, para ti o para todo tu grupo familiar.</dd>
+                    </div>
+                    <div>
+                        <dt>Tarjetas</dt>
+                        <dd>Registra tus tarjetas y revisa cuánto gastas con cada una.</dd>
+                    </div>
+                    <div>
+                        <dt>Gastos</dt>
+                        <dd>Anota cada ingreso y gasto, y mira en qué se va tu dinero.</dd>
+                    </div>
+                    <div>
+                        <dt>Ahorro</dt>
+                        <dd>Define metas y presupuestos, y sigue tu avance mes a mes.</dd>
+                    </div>
+                </dl>
+            </div>
+        </section>
+
+        <section class="seccion" id="tecnologia" aria-labelledby="titulo-stack">
+            <div class="contenedor">
+                <h2 class="titulo" id="titulo-stack">Stack tecnológico</h2>
+
+                <div class="dos-columnas">
+                    <div>
+                        <h3>Aplicación móvil</h3>
+                        <dl class="lista-datos">
+                            <div>
+                                <dt>Flutter</dt>
+                                <dd>Framework para crear la aplicación móvil con un solo código.</dd>
+                            </div>
+                            <div>
+                                <dt>Dart</dt>
+                                <dd>Lenguaje de programación con el que funciona Flutter.</dd>
+                            </div>
+                            <div>
+                                <dt>MVVM + Repository</dt>
+                                <dd>Organización del código en capas, con datos que también funcionan sin conexión.</dd>
+                            </div>
+                        </dl>
+                    </div>
+                    <div>
+                        <h3>Página web</h3>
+                        <dl class="lista-datos">
+                            <div>
+                                <dt>HTML</dt>
+                                <dd>Lenguaje de marcado para estructurar el contenido de la web.</dd>
+                            </div>
+                            <div>
+                                <dt>CSS</dt>
+                                <dd>Lenguaje de estilo para definir la apariencia de la web.</dd>
+                            </div>
+                            <div>
+                                <dt>JavaScript</dt>
+                                <dd>Lenguaje de programación para agregar funcionalidad interactiva a la web.</dd>
+                            </div>
+                            <div>
+                                <dt>PHP</dt>
+                                <dd>Lenguaje del lado del servidor para procesar datos y generar contenido dinámico.</dd>
+                            </div>
+                        </dl>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="seccion seccion--suave" id="contacto" aria-labelledby="titulo-contacto">
+            <div class="contenedor contacto">
+                <div>
+                    <h2 class="titulo" id="titulo-contacto">Contacto</h2>
+                    <p>Si tienes alguna pregunta o necesitas ayuda, escríbenos a
+                        <a href="mailto:contacto@dolarito.com">contacto@dolarito.com</a>
+                        o completa el formulario.</p>
+                    <p><a href="unidades.html">Ver las unidades de Dolarito</a></p>
+                </div>
+
+                <form action="procesar_formulario.php" method="post">
+                    <div class="campo">
+                        <label for="nombre">Nombre</label>
+                        <input type="text" id="nombre" name="nombre" placeholder="Ingresa tu nombre" autocomplete="name" required>
+                    </div>
+
+                    <div class="campo">
+                        <label for="email">Correo electrónico</label>
+                        <input type="email" id="email" name="email" placeholder="Ingresa tu correo electrónico" autocomplete="email" required>
+                    </div>
+
+                    <div class="campo">
+                        <label for="mensaje">Mensaje</label>
+                        <textarea id="mensaje" name="mensaje" placeholder="Escribe tu mensaje" rows="5" required></textarea>
+                    </div>
+
+                    <button class="boton" type="submit">Enviar mensaje</button>
+                </form>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="pie">
+        <div class="contenedor">
+            <p>© 2026 Dolarito. Todos los derechos reservados.</p>
+        </div>
     </footer>
 </body>
 

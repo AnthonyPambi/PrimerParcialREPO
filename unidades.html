@@ -1,11 +1,97 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Unidades</title>
+    <title>Unidades | Dolarito</title>
+    <meta name="description" content="Conoce las unidades de Dolarito: cuenta, tarjetas, gastos, ahorro, presupuestos e informes.">
+    <meta name="theme-color" content="#0F4C3A">
+    <link rel="icon" type="image/png" href="imagenes/dolarito-icono-1024.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
 </head>
+
 <body>
-    <p>Esta es la pagina de unidades</p>
+    <a class="salto" href="#contenido">Saltar al contenido</a>
+
+    <header class="cabecera">
+        <div class="contenedor cabecera__interior">
+            <a class="marca" href="index.html">Dolarito</a>
+            <nav aria-label="Principal">
+                <ul class="menu">
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="unidades.html" aria-current="page">Unidades</a></li>
+                    <li><a href="index.html#contacto">Contacto</a></li>
+                    <li><a href="acerca.html">Acerca de</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main id="contenido">
+
+        <section class="portada" aria-labelledby="titulo-portada">
+            <div class="contenedor portada__interior">
+                <div class="portada__texto">
+                    <h1 class="titulo" id="titulo-portada">Unidades</h1>
+                    <p class="portada__lema">Cada unidad de Dolarito resuelve una parte de tus finanzas, para que tengas todo en orden desde el celular.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="seccion" aria-labelledby="titulo-unidades">
+            <div class="contenedor">
+                <h2 class="titulo" id="titulo-unidades">Qué encuentras en Dolarito</h2>
+                <p>Estas son las unidades de la aplicación. Puedes usarlas por separado o combinarlas para tener una visión completa de tu dinero y el de tu familia.</p>
+
+                <dl class="lista-datos lista-datos--dos">
+                    <div id="cuenta">
+                        <dt>Cuenta</dt>
+                        <dd>Crea tus cuentas, consulta el saldo y revisa los movimientos en un solo lugar, para ti o para todo tu grupo familiar.</dd>
+                    </div>
+                    <div id="tarjetas">
+                        <dt>Tarjetas</dt>
+                        <dd>Registra tus tarjetas y revisa cuánto gastas con cada una.</dd>
+                    </div>
+                    <div id="gastos">
+                        <dt>Gastos</dt>
+                        <dd>Anota cada ingreso y cada gasto, y clasifícalos para ver en qué se va tu dinero.</dd>
+                    </div>
+                    <div id="ahorro">
+                        <dt>Ahorro</dt>
+                        <dd>Define metas de ahorro y sigue tu avance mes a mes.</dd>
+                    </div>
+                    <div id="presupuestos">
+                        <dt>Presupuestos</dt>
+                        <dd>Fija cuánto quieres gastar en cada categoría y compáralo con lo que llevas gastado.</dd>
+                    </div>
+                    <div id="informes">
+                        <dt>Informes</dt>
+                        <dd>Consulta el detalle de tus ingresos, gastos y ahorro para entender tu situación financiera.</dd>
+                    </div>
+                </dl>
+            </div>
+        </section>
+
+        <section class="seccion seccion--suave" aria-labelledby="titulo-ayuda">
+            <div class="contenedor">
+                <h2 class="titulo" id="titulo-ayuda">¿Tienes dudas sobre alguna unidad?</h2>
+                <p>Escríbenos y te ayudamos a sacarle el máximo provecho a Dolarito.</p>
+                <p><a href="index.html#contacto">Ir al formulario de contacto</a> · <a href="index.html">Volver al inicio</a></p>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="pie">
+        <div class="contenedor">
+            <p>© 2026 Dolarito. Todos los derechos reservados.</p>
+        </div>
+    </footer>
 </body>
+
 </html>

@@ -1,47 +1,393 @@
-html {
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+/* ============================================================
+   Dolarito · hoja de estilos
+   Paleta: verde #0F4C3A · fondo #F7F8F6 · tipografía Plus Jakarta Sans
+   ============================================================ */
+
+:root {
+    --verde: #0F4C3A;
+    --verde-hondo: #0A3629;
+    --fondo: #F7F8F6;
+    --suave: #EAF1ED;
+    --menta: #CFE0D7;
+    --tinta: #17261F;
+    --apagado: #4E5E56;
+    --blanco: #FFFFFF;
+
+    --fuente: "Plus Jakarta Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    --ancho: 68rem;
+    --radio: 14px;
 }
+
+/* ---------- Base ---------- */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-padding-top: 5rem;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    html {
+        scroll-behavior: smooth;
+    }
+}
+
 body {
     margin: 0;
-    padding: 0;
-    background-color: #f4f4f4;
-    font-size: 16px;
-
+    font-family: var(--fuente);
+    font-size: 1.0625rem;
+    line-height: 1.7;
+    color: var(--tinta);
+    background: var(--fondo);
 }
 
-h2.titulo {
-    color: #333;
-    text-align: center;
-    margin-top: 20px;
-}
-h2 {
-    color: green;
-    text-align: center;
-    margin-top: 20px;
-}
 img {
     display: block;
-    margin: 20px auto;
     max-width: 100%;
     height: auto;
 }
+
 p {
-    text-align: justify;
-    color: #555;
-    line-height: 1.6;
-    margin: 20px;
+    margin: 0 0 1rem;
+    max-width: 65ch;
 }
-.titulo {
-    font-size: 24px;
-    font-weight: bold;
-    color: green;
-    text-align: center; 
+
+a {
+    color: var(--verde);
+    text-underline-offset: 3px;
 }
-form{
-    max-width: 400px;
-    margin: 20px auto;
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+a:hover {
+    color: var(--verde-hondo);
+}
+
+:focus-visible {
+    outline: 3px solid var(--verde);
+    outline-offset: 3px;
+}
+
+.contenedor {
+    width: min(100% - 2.5rem, var(--ancho));
+    margin-inline: auto;
+}
+
+/* ---------- Títulos ---------- */
+h1,
+h2,
+h3 {
+    margin: 0 0 1rem;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    color: var(--verde);
+}
+
+h1 {
+    font-size: clamp(2.4rem, 6.5vw, 4rem);
+    font-weight: 800;
+}
+
+h2 {
+    font-size: clamp(1.6rem, 3.6vw, 2.2rem);
+    font-weight: 800;
+}
+
+h3 {
+    margin-top: 2rem;
+    font-size: 1.2rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+}
+
+/* ---------- Accesibilidad: salto al contenido ---------- */
+.salto {
+    position: absolute;
+    left: 1rem;
+    top: -4rem;
+    padding: 0.6rem 1rem;
+    background: var(--blanco);
+    color: var(--verde);
+    font-weight: 700;
+    border-radius: 8px;
+    z-index: 20;
+}
+
+.salto:focus {
+    top: 1rem;
+}
+
+/* ---------- Cabecera y menú ---------- */
+.cabecera {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: var(--verde);
+}
+
+.cabecera__interior {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.25rem 1.5rem;
+    padding-block: 0.6rem;
+}
+
+.marca {
+    color: var(--blanco);
+    font-size: 1.35rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    text-decoration: none;
+}
+
+.menu {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.menu a {
+    display: block;
+    padding: 0.45rem 0.8rem;
+    color: #DDEBE4;
+    font-weight: 500;
+    text-decoration: none;
+    border-radius: 8px;
+}
+
+.menu a:hover {
+    color: var(--blanco);
+    background: rgba(255, 255, 255, 0.12);
+}
+
+.menu a[aria-current="page"] {
+    color: var(--verde);
+    background: var(--blanco);
+    font-weight: 700;
+}
+
+.cabecera :focus-visible {
+    outline-color: var(--blanco);
+}
+
+/* ---------- Portada ---------- */
+.portada {
+    background: var(--verde);
+    color: var(--blanco);
+}
+
+.portada__interior {
+    display: grid;
+    gap: 2rem;
+    align-items: center;
+    padding-block: 3rem 3.5rem;
+}
+
+.portada .titulo {
+    color: var(--blanco);
+}
+
+.portada__lema {
+    font-size: clamp(1.1rem, 2.4vw, 1.4rem);
+    line-height: 1.5;
+    color: #DDEBE4;
+}
+
+.autor {
+    margin: 1.5rem 0 0;
+    padding-top: 1rem;
+    border-top: 2px solid rgba(255, 255, 255, 0.28);
+    max-width: 22rem;
+    font-weight: 500;
+    color: #DDEBE4;
+}
+
+.portada__icono {
+    width: min(55%, 15rem);
+    border-radius: 22%;
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.3);
+}
+
+/* ---------- Secciones ---------- */
+.seccion {
+    padding-block: 3.5rem;
+}
+
+.seccion--suave {
+    background: var(--suave);
+}
+
+.figura {
+    margin: 0 0 1.75rem;
+}
+
+.figura img {
+    width: 100%;
+    max-height: 28rem;
+    object-fit: cover;
+    border-radius: var(--radio);
+}
+
+/* ---------- Listas de definición (beneficios y stack) ---------- */
+.lista-datos {
+    display: grid;
+    gap: 1.25rem 2rem;
+    margin: 0;
+}
+
+.lista-datos > div {
+    padding-top: 0.75rem;
+    border-top: 3px solid var(--verde);
+}
+
+.lista-datos dt {
+    font-weight: 800;
+    font-size: 1.1rem;
+    color: var(--verde);
+}
+
+.lista-datos dd {
+    margin: 0.25rem 0 0;
+    color: var(--apagado);
+}
+
+.dos-columnas {
+    display: grid;
+    gap: 1rem 3rem;
+}
+
+.dos-columnas h3 {
+    margin-top: 0.5rem;
+}
+
+/* ---------- Contacto y formulario ---------- */
+.contacto {
+    display: grid;
+    gap: 2rem;
+}
+
+form {
+    display: grid;
+    gap: 1.1rem;
+    padding: 1.5rem;
+    background: var(--blanco);
+    border: 1px solid var(--menta);
+    border-radius: var(--radio);
+}
+
+.campo {
+    display: grid;
+    gap: 0.35rem;
+}
+
+label {
+    font-weight: 700;
+    font-size: 0.95rem;
+}
+
+input,
+textarea {
+    width: 100%;
+    padding: 0.75rem 0.9rem;
+    font: inherit;
+    color: var(--tinta);
+    background: var(--fondo);
+    border: 1.5px solid #9DB5A9;
+    border-radius: 10px;
+}
+
+textarea {
+    resize: vertical;
+    min-height: 8rem;
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: #6B7B73;
+}
+
+input:focus-visible,
+textarea:focus-visible {
+    outline: 3px solid var(--verde);
+    outline-offset: 1px;
+    border-color: var(--verde);
+}
+
+.boton {
+    justify-self: start;
+    padding: 0.8rem 1.6rem;
+    font: inherit;
+    font-weight: 700;
+    color: var(--blanco);
+    background: var(--verde);
+    border: 0;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.boton:hover {
+    background: var(--verde-hondo);
+}
+
+/* ---------- Pie de página ---------- */
+.pie {
+    padding-block: 1.75rem;
+    color: #CFE0D7;
+    background: var(--verde-hondo);
+    font-size: 0.95rem;
+}
+
+.pie p {
+    margin: 0;
+    max-width: none;
+}
+
+/* ---------- Pantallas pequeñas: menú en una sola fila ---------- */
+@media (max-width: 30rem) {
+    .menu {
+        gap: 0;
+        margin-inline: -0.55rem;
+    }
+
+    .menu a {
+        padding: 0.4rem 0.55rem;
+        font-size: 0.92rem;
+    }
+}
+
+/* ---------- Pantallas medianas y grandes ---------- */
+@media (min-width: 48rem) {
+    .portada__interior {
+        grid-template-columns: 1.4fr 1fr;
+        padding-block: 4.5rem 5rem;
+    }
+
+    .portada__icono {
+        justify-self: end;
+        width: min(100%, 17rem);
+    }
+
+    .lista-datos--dos {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .dos-columnas {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .contacto {
+        grid-template-columns: 1fr 1.2fr;
+        gap: 3rem;
+        align-items: start;
+    }
+
+    .seccion {
+        padding-block: 4.5rem;
+    }
 }
