@@ -1,0 +1,5 @@
+# Archivos de error de Git Bash
+*.stackdump
+
+# Configuracion local de Claude Code (no es parte del sitio)
+.claude/
