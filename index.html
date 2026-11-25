@@ -11,8 +11,20 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/styles.css">
+
+    <!-- Aplica el tema guardado antes de pintar la página (evita el parpadeo) -->
+    <script>
+        (function () {
+            var d = document.documentElement, t = null;
+            d.classList.add("js");
+            try { t = localStorage.getItem("dolarito-tema"); } catch (e) {}
+            if (!t && window.matchMedia && matchMedia("(prefers-color-scheme: dark)").matches) t = "dark";
+            if (t === "dark") d.setAttribute("data-theme", "dark");
+        })();
+    </script>
+    <script src="js/main.js" defer></script>
 </head>
 
 <body>
@@ -20,13 +32,24 @@
 
     <header class="cabecera">
         <div class="contenedor cabecera__interior">
-            <a class="marca" href="index.html">Dolarito</a>
-            <nav aria-label="Principal">
+            <a class="marca" href="index.html"><img src="imagenes/dolarito-icono-1024.png" alt="" width="36" height="36">Dolarito</a>
+
+            <div class="cabecera__acciones">
+                <button class="boton-icono" type="button" id="boton-tema" aria-pressed="false" aria-label="Activar modo oscuro">
+                    <svg class="icono-luna" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+                    <svg class="icono-sol" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+                </button>
+                <button class="boton-icono menu-boton" type="button" aria-expanded="false" aria-controls="menu-principal" aria-label="Abrir menú">
+                    <span class="hamburguesa" aria-hidden="true"></span>
+                </button>
+            </div>
+
+            <nav class="navegacion" id="menu-principal" aria-label="Principal">
                 <ul class="menu">
                     <li><a href="index.html" aria-current="page">Inicio</a></li>
                     <li><a href="unidades.html">Unidades</a></li>
-                    <li><a href="#contacto">Contacto</a></li>
                     <li><a href="acerca.html">Acerca de</a></li>
+                    <li><a href="#contacto">Contacto</a></li>
                 </ul>
             </nav>
         </div>
@@ -39,6 +62,10 @@
                 <div class="portada__texto">
                     <h1 class="titulo" id="titulo-portada">Bienvenido a Dolarito</h1>
                     <p class="portada__lema">Tus finanzas personales y familiares, claras y bajo control, desde tu celular.</p>
+                    <div class="portada__acciones">
+                        <a class="boton boton--claro" href="unidades.html">Conoce la app</a>
+                        <a class="boton boton--borde" href="#ahorro">Calcula tu ahorro</a>
+                    </div>
                     <p class="autor">Dirigido por Anthony Pambi y Wilmer Medina</p>
                 </div>
                 <img class="portada__icono" src="imagenes/dolarito-icono-1024.png" alt="Icono de Dolarito" width="1024" height="1024">
@@ -46,21 +73,61 @@
         </section>
 
         <section class="seccion" id="proyecto" aria-labelledby="titulo-proyecto">
-            <div class="contenedor">
-                <h2 class="titulo" id="titulo-proyecto">Sobre el proyecto</h2>
-                <figure class="figura">
-                    <img src="imagenes/Gemini_Generated_Image_ey1bgjey1bgjey1b.jpg" alt="Imagen de la aplicación Dolarito" loading="lazy">
-                </figure>
-                <p>Dolarito es una aplicación móvil desarrollada en Flutter que permite gestionar tus finanzas personales de manera eficiente y sencilla. Con Dolarito puedes llevar el registro de tus ingresos y gastos, establecer presupuestos y consultar informes detallados de tu situación financiera.</p>
+            <div class="contenedor revelar">
+                <article class="proyecto">
+                    <figure class="figura">
+                        <img src="imagenes/familia-finanzas.jpg" alt="Familia sentada en el sofá revisando juntos sus finanzas en el celular" width="760" height="1133" loading="lazy">
+                        <figcaption>Las cuentas de la casa, claras para todos.</figcaption>
+                    </figure>
+
+                    <div class="proyecto__texto">
+                        <h2 class="titulo" id="titulo-proyecto">Sobre el proyecto</h2>
+                        <p class="destacado">Cada dólar de la casa, a la vista de toda la familia.</p>
+                        <p>Dolarito es una aplicación móvil desarrollada en Flutter que permite gestionar tus finanzas personales de manera eficiente y sencilla. Con Dolarito puedes llevar el registro de tus ingresos y gastos, establecer presupuestos y consultar informes detallados de tu situación financiera.</p>
+
+                        <ul class="puntos-clave">
+                            <li>
+                                <span class="puntos-clave__icono" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 2l20 20"/><path d="M8.5 16.5a5 5 0 0 1 7 0"/><path d="M5 12.9a10 10 0 0 1 5.2-2.8"/><path d="M19 12.9a10 10 0 0 0-2.3-1.6"/><path d="M2 8.8a15 15 0 0 1 4.2-2.7"/><path d="M22 8.8A15 15 0 0 0 11 5"/><circle cx="12" cy="20" r="1"/></svg>
+                                </span>
+                                <div>
+                                    <strong>Funciona sin internet</strong>
+                                    <p>Registra tus gastos donde sea; se guardan en el teléfono y se sincronizan después.</p>
+                                </div>
+                            </li>
+                            <li>
+                                <span class="puntos-clave__icono" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="7" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><circle cx="17.5" cy="9" r="2.5"/><path d="M16 14.2a5 5 0 0 1 6 4.8"/></svg>
+                                </span>
+                                <div>
+                                    <strong>Pensada para la familia</strong>
+                                    <p>Gastos compartidos, roles de administrador y miembro, y control de privacidad.</p>
+                                </div>
+                            </li>
+                            <li>
+                                <span class="puntos-clave__icono" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2" width="12" height="20" rx="2.5"/><path d="M11 18h2"/></svg>
+                                </span>
+                                <div>
+                                    <strong>Android y iPhone</strong>
+                                    <p>Un solo código hecho con Flutter para los dos sistemas.</p>
+                                </div>
+                            </li>
+                        </ul>
+
+                        <a class="boton" href="unidades.html#recorrido">Ver las pantallas de la app</a>
+                    </div>
+                </article>
             </div>
         </section>
 
         <section class="seccion seccion--suave" id="beneficios" aria-labelledby="titulo-ayuda">
-            <div class="contenedor">
+            <div class="contenedor revelar">
                 <h2 class="titulo" id="titulo-ayuda">¿Necesitas ayuda con tus finanzas?</h2>
                 <p>Una aplicación para organizar tu dinero y el de tu familia sin complicaciones.</p>
 
                 <h3>Beneficios</h3>
+                <div class="con-imagen">
                 <dl class="lista-datos lista-datos--dos">
                     <div>
                         <dt>Cuenta</dt>
@@ -79,11 +146,59 @@
                         <dd>Define metas y presupuestos, y sigue tu avance mes a mes.</dd>
                     </div>
                 </dl>
+                <img class="ilustracion" src="imagenes/beneficio-cuenta.jpg" alt="Billetera verde con billetes y monedas" width="640" height="640" loading="lazy">
+                </div>
             </div>
         </section>
 
-        <section class="seccion" id="tecnologia" aria-labelledby="titulo-stack">
-            <div class="contenedor">
+        <section class="seccion" id="ahorro" aria-labelledby="titulo-calculadora">
+            <div class="contenedor revelar">
+                <div class="encabezado-con-imagen">
+                    <div>
+                        <h2 class="titulo" id="titulo-calculadora">Calcula cuánto podrías ahorrar</h2>
+                        <p>Mueve los valores y mira cuánto juntarías si apartas una parte de tus ingresos cada mes, como te ayuda a hacerlo Dolarito.</p>
+                        <p>Ahorrar poco pero seguido es lo que hace crecer tu dinero.</p>
+                    </div>
+                    <img class="foto" src="imagenes/ahorro-meta.jpg" alt="Mano colocando una moneda en un frasco de ahorro del que crece una planta" width="960" height="717" loading="lazy">
+                </div>
+
+                <div class="calculadora">
+                    <form id="calculadora" aria-label="Calculadora de ahorro">
+                        <fieldset>
+                            <legend class="visualmente-oculto">Datos para calcular tu ahorro</legend>
+                            <div class="campo">
+                                <label for="calc-ingreso">Ingreso mensual (USD)</label>
+                                <input type="number" id="calc-ingreso" name="ingreso" value="800" min="0" step="10" inputmode="decimal">
+                            </div>
+                            <div class="campo">
+                                <label for="calc-porcentaje">Porcentaje que quieres ahorrar: <output id="calc-porcentaje-valor" for="calc-porcentaje">10 %</output></label>
+                                <input type="range" id="calc-porcentaje" name="porcentaje" min="5" max="50" step="5" value="10">
+                            </div>
+                            <div class="campo">
+                                <label for="calc-meses">Durante</label>
+                                <select id="calc-meses" name="meses">
+                                    <option value="6">6 meses</option>
+                                    <option value="12" selected>12 meses</option>
+                                    <option value="24">24 meses</option>
+                                    <option value="36">36 meses</option>
+                                </select>
+                            </div>
+                        </fieldset>
+                    </form>
+
+                    <div class="calculadora__resultado" aria-live="polite">
+                        <p>Ahorrarías en total</p>
+                        <output class="calculadora__cifra" id="calc-total" for="calc-ingreso calc-porcentaje calc-meses">$960,00</output>
+                        <p id="calc-mensual">$80,00 al mes durante 12 meses</p>
+                        <div class="barra" aria-hidden="true"><span class="barra__relleno" id="calc-barra"></span></div>
+                        <p><small>Barra: avance hacia una meta de referencia de $5.000.</small></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="seccion seccion--suave" id="tecnologia" aria-labelledby="titulo-stack">
+            <div class="contenedor revelar">
                 <h2 class="titulo" id="titulo-stack">Stack tecnológico</h2>
 
                 <div class="dos-columnas">
@@ -120,8 +235,8 @@
                                 <dd>Lenguaje de programación para agregar funcionalidad interactiva a la web.</dd>
                             </div>
                             <div>
-                                <dt>PHP</dt>
-                                <dd>Lenguaje del lado del servidor para procesar datos y generar contenido dinámico.</dd>
+                                <dt>Netlify</dt>
+                                <dd>Plataforma donde se publica el sitio y que recibe los mensajes del formulario de contacto.</dd>
                             </div>
                         </dl>
                     </div>
@@ -129,30 +244,58 @@
             </div>
         </section>
 
-        <section class="seccion seccion--suave" id="contacto" aria-labelledby="titulo-contacto">
-            <div class="contenedor contacto">
+        <section class="seccion" id="contacto" aria-labelledby="titulo-contacto">
+            <div class="contenedor contacto revelar">
                 <div>
                     <h2 class="titulo" id="titulo-contacto">Contacto</h2>
                     <p>Si tienes alguna pregunta o necesitas ayuda, escríbenos a
                         <a href="mailto:contacto@dolarito.com">contacto@dolarito.com</a>
                         o completa el formulario.</p>
+                    <p>Los campos marcados con * son obligatorios.</p>
                     <p><a href="unidades.html">Ver las unidades de Dolarito</a></p>
                 </div>
 
-                <form action="procesar_formulario.php" method="post">
+                <form id="form-contacto" name="contacto" action="gracias.html" method="post" data-netlify="true" netlify-honeypot="bot-field">
+                    <input type="hidden" name="form-name" value="contacto">
+                    <p class="oculto-bot">
+                        <label>No llenes este campo: <input name="bot-field" tabindex="-1" autocomplete="off"></label>
+                    </p>
+
                     <div class="campo">
-                        <label for="nombre">Nombre</label>
-                        <input type="text" id="nombre" name="nombre" placeholder="Ingresa tu nombre" autocomplete="name" required>
+                        <label for="nombre">Nombre *</label>
+                        <input type="text" id="nombre" name="nombre" placeholder="Ingresa tu nombre" autocomplete="name" required minlength="3" aria-describedby="error-nombre">
+                        <p class="campo__error" id="error-nombre" aria-live="polite"></p>
                     </div>
 
                     <div class="campo">
-                        <label for="email">Correo electrónico</label>
-                        <input type="email" id="email" name="email" placeholder="Ingresa tu correo electrónico" autocomplete="email" required>
+                        <label for="email">Correo electrónico *</label>
+                        <input type="email" id="email" name="email" placeholder="nombre@correo.com" autocomplete="email" required aria-describedby="error-email">
+                        <p class="campo__error" id="error-email" aria-live="polite"></p>
                     </div>
 
                     <div class="campo">
-                        <label for="mensaje">Mensaje</label>
-                        <textarea id="mensaje" name="mensaje" placeholder="Escribe tu mensaje" rows="5" required></textarea>
+                        <label for="motivo">Motivo *</label>
+                        <select id="motivo" name="motivo" required aria-describedby="error-motivo">
+                            <option value="">Elige una opción</option>
+                            <option value="soporte">Necesito ayuda con la app</option>
+                            <option value="sugerencia">Tengo una sugerencia</option>
+                            <option value="familia">Quiero usarla con mi familia</option>
+                            <option value="otro">Otro</option>
+                        </select>
+                        <p class="campo__error" id="error-motivo" aria-live="polite"></p>
+                    </div>
+
+                    <div class="campo">
+                        <label for="mensaje">Mensaje *</label>
+                        <textarea id="mensaje" name="mensaje" placeholder="Escribe tu mensaje" rows="5" required minlength="10" maxlength="600" aria-describedby="contador-mensaje error-mensaje"></textarea>
+                        <p class="campo__ayuda" id="contador-mensaje">0 / 500 caracteres</p>
+                        <p class="campo__error" id="error-mensaje" aria-live="polite"></p>
+                    </div>
+
+                    <div class="campo campo--casilla">
+                        <input type="checkbox" id="acepto" name="acepto" value="si" required aria-describedby="error-acepto">
+                        <label for="acepto">Acepto que Dolarito me responda a este correo. *</label>
+                        <p class="campo__error" id="error-acepto" aria-live="polite"></p>
                     </div>
 
                     <button class="boton" type="submit">Enviar mensaje</button>
@@ -163,8 +306,20 @@
     </main>
 
     <footer class="pie">
-        <div class="contenedor">
-            <p>© 2026 Dolarito. Todos los derechos reservados.</p>
+        <div class="contenedor pie__interior">
+            <div>
+                <p class="pie__marca">Dolarito</p>
+                <p>Finanzas personales y familiares desde tu celular.</p>
+            </div>
+            <nav aria-label="Pie de página">
+                <ul class="pie__menu">
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="unidades.html">Unidades</a></li>
+                    <li><a href="acerca.html">Acerca de</a></li>
+                    <li><a href="index.html#contacto">Contacto</a></li>
+                </ul>
+            </nav>
+            <p class="pie__legal">© <span data-anio>2026</span> Dolarito · Anthony Pambi y Wilmer Medina. Todos los derechos reservados.</p>
         </div>
     </footer>
 </body>
