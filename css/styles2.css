@@ -1,0 +1,1404 @@
+/* ============================================================
+   Dolarito · hoja de estilos
+   Paleta: Cumplimiento Carbón · Tipografía: Plus Jakarta Sans
+
+   Índice
+   1. Variables (paleta y tema oscuro)
+   2. Base y tipografía
+   3. Accesibilidad
+   4. Cabecera y menú
+   5. Botones
+   6. Portada
+   7. Secciones, imágenes y diseños de columnas
+   8. Componentes: tarjetas, calculadora, carrusel, acordeón
+   9. Formulario y página de gracias
+   10. Pie de página
+   11. Responsivo, impresión y movimiento reducido
+   ============================================================ */
+
+/* ============================================================
+   1. VARIABLES
+   ============================================================ */
+:root {
+    /* Paleta fija: Cumplimiento Carbón */
+    --carbon-900: #0b0f14;
+    --carbon-700: #24303e;
+    --carbon-500: #64748b;
+    --carbon-300: #cbd5e1;
+    --carbon-50: #f8fafc;
+    --blanco: #fff;
+
+    /* Colores con significado propio (no cambian con el tema) */
+    --rojo: #b3412e;
+    --verde-ok: #1e7f43;
+
+    /* Transparencias sobre fondos oscuros */
+    --vidrio: rgba(255, 255, 255, 0.1);
+    --vidrio-fuerte: rgba(255, 255, 255, 0.2);
+    --vidrio-borde: rgba(255, 255, 255, 0.22);
+
+    /* Tokens que cambian con el tema */
+    --primario: var(--carbon-900); /* cabecera, botones, resultados */
+    --primario-hover: var(--carbon-700);
+    --sobre-primario: var(--carbon-300); /* texto claro sobre el primario */
+    --realce: var(--carbon-500); /* líneas y detalles de énfasis */
+
+    --fondo: var(--carbon-50);
+    --suave: #edf1f5;
+    --superficie: var(--blanco);
+    --borde: var(--carbon-300);
+    --tinta: var(--carbon-900);
+    --apagado: var(--carbon-700);
+    --acento: var(--carbon-900); /* títulos, enlaces, foco */
+    --acento-hover: var(--carbon-700);
+    --campo-borde: var(--carbon-500);
+    --placeholder: var(--carbon-500);
+    --peligro: var(--rojo); /* también lo usa el JavaScript */
+    --ingreso: var(--verde-ok);
+    --sombra: 0 10px 30px rgba(11, 15, 20, 0.1);
+
+    /* Medidas y tipografía */
+    --fuente:
+        "Plus Jakarta Sans", system-ui, -apple-system, "Segoe UI", Roboto,
+        sans-serif;
+    --ancho: 68rem;
+    --radio: 14px;
+    --radio-chico: 10px;
+    --espacio: clamp(
+        3rem,
+        7vw,
+        4.5rem
+    ); /* separación vertical entre secciones */
+
+    color-scheme: light;
+}
+
+:root[data-theme="dark"] {
+    --primario: var(--carbon-700);
+    --primario-hover: var(--carbon-500);
+    --realce: var(--carbon-300);
+
+    --fondo: var(--carbon-900);
+    --suave: #10161d;
+    --superficie: #151c25;
+    --borde: var(--carbon-700);
+    --tinta: var(--carbon-50);
+    --apagado: var(--carbon-300);
+    --acento: var(--carbon-300);
+    --acento-hover: var(--carbon-50);
+    --placeholder: #94a3b8;
+    --peligro: #ff9c87;
+    --ingreso: #a8dc6e;
+    --sombra: 0 10px 30px rgba(0, 0, 0, 0.35);
+
+    color-scheme: dark;
+}
+
+/* ============================================================
+   2. BASE Y TIPOGRAFÍA
+   ============================================================ */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-padding-top: 5rem;
+}
+
+body {
+    margin: 0;
+    font: 1.0625rem/1.7 var(--fuente);
+    color: var(--tinta);
+    background: var(--fondo);
+    transition:
+        background-color 0.3s,
+        color 0.3s;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+p {
+    margin: 0 0 1rem;
+    max-width: 65ch;
+}
+
+a {
+    color: var(--acento);
+    text-underline-offset: 3px;
+}
+a:hover {
+    color: var(--acento-hover);
+}
+
+:focus-visible {
+    outline: 3px solid var(--acento);
+    outline-offset: 3px;
+}
+
+.contenedor {
+    width: min(100% - 2.5rem, var(--ancho));
+    margin-inline: auto;
+}
+
+h1,
+h2,
+h3 {
+    margin: 0 0 1rem;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    color: var(--acento);
+}
+h1 {
+    font-size: clamp(2.4rem, 6.5vw, 4rem);
+    font-weight: 800;
+}
+h2 {
+    font-size: clamp(1.6rem, 3.6vw, 2.2rem);
+    font-weight: 800;
+}
+h3 {
+    margin-top: 2rem;
+    font-size: 1.2rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+}
+
+/* Barra de énfasis bajo los títulos de sección */
+.seccion h2::after {
+    content: "";
+    display: block;
+    width: 3.5rem;
+    height: 4px;
+    margin-top: 0.6rem;
+    background: var(--realce);
+    border-radius: 99px;
+}
+
+.entradilla {
+    font-size: 1.15rem;
+    color: var(--apagado);
+}
+
+.destacado {
+    margin-bottom: 1.25rem;
+    font-size: clamp(1.25rem, 2.6vw, 1.6rem);
+    font-weight: 700;
+    line-height: 1.35;
+    color: var(--tinta);
+}
+
+/* ============================================================
+   3. ACCESIBILIDAD
+   ============================================================ */
+.salto {
+    position: absolute;
+    left: 1rem;
+    top: -4rem;
+    z-index: 20;
+    padding: 0.6rem 1rem;
+    font-weight: 700;
+    color: var(--primario);
+    background: var(--blanco);
+    border-radius: 8px;
+}
+.salto:focus {
+    top: 1rem;
+}
+
+.visualmente-oculto {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+}
+
+/* El foco se ve en blanco sobre fondos oscuros */
+.cabecera :focus-visible,
+.pie :focus-visible {
+    outline-color: var(--blanco);
+}
+
+/* Sin JavaScript, los controles que no funcionarían se ocultan */
+html:not(.js) .boton-icono,
+html:not(.js) .carrusel__controles,
+html:not(.js) .acordeon__icono {
+    display: none;
+}
+
+/* ============================================================
+   4. CABECERA Y MENÚ (fija arriba)
+   ============================================================ */
+.cabecera {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: var(--primario);
+    border-bottom: 1px solid var(--vidrio);
+    transition: box-shadow 0.3s;
+}
+.cabecera--sombra {
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.22);
+}
+
+.cabecera__interior {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.25rem 1.5rem;
+    padding-block: 0.6rem;
+}
+
+.marca {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 1.35rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: var(--blanco);
+    text-decoration: none;
+}
+.marca:hover {
+    color: var(--blanco);
+}
+.marca img {
+    width: 2.1rem;
+    height: 2.1rem;
+    border-radius: 22%;
+}
+
+.navegacion {
+    order: 2;
+}
+.cabecera__acciones {
+    display: flex;
+    gap: 0.4rem;
+    order: 3;
+}
+
+.menu {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+.menu a {
+    display: block;
+    padding: 0.45rem 0.8rem;
+    font-weight: 500;
+    color: var(--sobre-primario);
+    text-decoration: none;
+    border-radius: 8px;
+    transition:
+        background-color 0.2s,
+        color 0.2s;
+}
+.menu a:hover {
+    color: var(--blanco);
+    background: var(--vidrio);
+}
+.menu a[aria-current="page"] {
+    font-weight: 700;
+    color: var(--primario);
+    background: var(--blanco);
+    box-shadow: inset 0 -3px 0 var(--realce);
+}
+
+/* Botones de la cabecera: tema y menú */
+.boton-icono {
+    display: grid;
+    place-items: center;
+    width: 2.6rem;
+    height: 2.6rem;
+    padding: 0;
+    color: var(--blanco);
+    background: var(--vidrio);
+    border: 1px solid var(--vidrio-borde);
+    border-radius: var(--radio-chico);
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+.boton-icono:hover {
+    background: var(--vidrio-fuerte);
+}
+.boton-icono svg {
+    width: 1.25rem;
+    height: 1.25rem;
+}
+
+/* Sol en tema oscuro, luna en tema claro */
+.icono-sol,
+[data-theme="dark"] .icono-luna {
+    display: none;
+}
+[data-theme="dark"] .icono-sol {
+    display: block;
+}
+
+/* Menú hamburguesa: tres barras que forman una X al abrirse */
+.menu-boton {
+    display: none;
+}
+
+.hamburguesa,
+.hamburguesa::before,
+.hamburguesa::after {
+    display: block;
+    width: 1.25rem;
+    height: 2px;
+    background: currentColor;
+    border-radius: 2px;
+    transition:
+        transform 0.25s,
+        opacity 0.25s;
+}
+.hamburguesa {
+    position: relative;
+}
+.hamburguesa::before,
+.hamburguesa::after {
+    content: "";
+    position: absolute;
+    left: 0;
+}
+.hamburguesa::before {
+    top: -6px;
+}
+.hamburguesa::after {
+    top: 6px;
+}
+
+.menu-boton[aria-expanded="true"] .hamburguesa {
+    background: transparent;
+}
+.menu-boton[aria-expanded="true"] .hamburguesa::before {
+    transform: translateY(6px) rotate(45deg);
+}
+.menu-boton[aria-expanded="true"] .hamburguesa::after {
+    transform: translateY(-6px) rotate(-45deg);
+}
+
+/* ============================================================
+   5. BOTONES
+   ============================================================ */
+.boton {
+    display: inline-block;
+    justify-self: start;
+    padding: 0.8rem 1.6rem;
+    font: inherit;
+    font-weight: 700;
+    color: var(--blanco);
+    background: var(--primario);
+    border: 2px solid var(--primario);
+    border-radius: var(--radio-chico);
+    text-decoration: none;
+    cursor: pointer;
+    transition:
+        background-color 0.2s,
+        border-color 0.2s,
+        transform 0.2s;
+}
+.boton:hover {
+    color: var(--blanco);
+    background: var(--primario-hover);
+    border-color: var(--primario-hover);
+}
+.boton:not(.boton--claro):not(.boton--borde):hover {
+    box-shadow: 0 6px 0 -2px var(--realce);
+}
+.boton:active {
+    transform: translateY(1px);
+}
+.boton:disabled {
+    opacity: 0.7;
+    cursor: progress;
+}
+
+/* Variantes para fondos oscuros (portada) */
+.boton--claro {
+    color: var(--primario);
+    background: var(--blanco);
+    border-color: var(--blanco);
+}
+.boton--claro:hover {
+    color: var(--carbon-900);
+    background: var(--carbon-300);
+    border-color: var(--carbon-300);
+}
+
+.boton--borde {
+    background: transparent;
+    border-color: rgba(255, 255, 255, 0.55);
+}
+.boton--borde:hover {
+    background: var(--vidrio);
+    border-color: var(--blanco);
+}
+
+/* ============================================================
+   6. PORTADA
+   ============================================================ */
+.portada {
+    overflow: hidden;
+    color: var(--blanco);
+    background:
+        radial-gradient(
+            circle at 85% 20%,
+            rgba(203, 213, 225, 0.18),
+            transparent 45%
+        ),
+        linear-gradient(135deg, var(--carbon-900), var(--carbon-700));
+}
+
+.portada__interior {
+    display: grid;
+    gap: 2rem;
+    align-items: center;
+    padding-block: 3rem 3.5rem;
+}
+
+.portada .titulo {
+    color: var(--blanco);
+}
+
+.portada__lema {
+    font-size: clamp(1.1rem, 2.4vw, 1.4rem);
+    line-height: 1.5;
+    color: var(--sobre-primario);
+}
+
+.portada__acciones {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+}
+
+.autor {
+    max-width: 22rem;
+    margin: 1.5rem 0 0;
+    padding-top: 1rem;
+    font-weight: 500;
+    color: var(--sobre-primario);
+    border-top: 3px solid var(--carbon-300);
+}
+
+.portada__icono,
+.portada__foto {
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.3);
+}
+.portada__icono {
+    width: min(55%, 15rem);
+    border-radius: 22%;
+}
+.portada__foto {
+    justify-self: center;
+    width: min(100%, 22rem);
+    border-radius: 24px;
+}
+
+/* Único movimiento decorativo: el icono flota (solo si no se pidió reducir movimiento) */
+@media (prefers-reduced-motion: no-preference) {
+    html {
+        scroll-behavior: smooth;
+    }
+    .portada__icono,
+    .ilustracion {
+        animation: flotar 6s ease-in-out infinite;
+    }
+}
+
+@keyframes flotar {
+    0%,
+    100% {
+        transform: translateY(0) rotate(-2deg);
+    }
+    50% {
+        transform: translateY(-12px) rotate(2deg);
+    }
+}
+
+/* ============================================================
+   7. SECCIONES, IMÁGENES Y DISEÑOS DE COLUMNAS
+   ============================================================ */
+.seccion {
+    padding-block: var(--espacio);
+}
+.seccion--suave {
+    background: var(--suave);
+    transition: background-color 0.3s;
+}
+
+/* Imágenes: foto, figura e ilustración comparten estilo */
+.foto,
+.figura img,
+.ilustracion {
+    width: 100%;
+    height: auto;
+    border-radius: var(--radio);
+    box-shadow: var(--sombra);
+}
+.ilustracion {
+    width: min(100%, 17rem);
+    margin-inline: auto;
+    border-radius: 28px;
+}
+.encabezado-con-imagen .foto {
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+}
+
+/* En tema oscuro se bajan un poco las fotos claras para que no deslumbren */
+[data-theme="dark"] :is(.figura img, .foto, .ilustracion) {
+    filter: brightness(0.88);
+}
+
+.figura {
+    margin: 0 0 1.75rem;
+}
+.figura figcaption {
+    margin-top: 0.75rem;
+    font-size: 0.92rem;
+    font-style: italic;
+    text-align: center;
+    color: var(--apagado);
+}
+.historia .figura {
+    margin: 0;
+}
+/* Foto vertical: se limita el ancho para que no quede demasiado alta */
+.proyecto .figura {
+    width: 100%;
+    max-width: 24rem;
+    margin: 0 auto;
+}
+
+/* Diseños de dos columnas: en móvil se apilan, en escritorio se reparten (ver sección 11) */
+.proyecto,
+.con-imagen,
+.encabezado-con-imagen,
+.historia {
+    display: grid;
+    gap: 2rem;
+    align-items: center;
+}
+
+/* Puntos clave con icono */
+.puntos-clave {
+    display: grid;
+    gap: 1.1rem;
+    margin: 1.5rem 0 1.75rem;
+    padding: 0;
+    list-style: none;
+}
+.puntos-clave li {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 1rem;
+    align-items: start;
+}
+.puntos-clave strong {
+    display: block;
+    color: var(--acento);
+}
+.puntos-clave p {
+    margin: 0;
+    font-size: 0.98rem;
+    color: var(--apagado);
+}
+
+.puntos-clave__icono {
+    display: grid;
+    place-items: center;
+    width: 2.75rem;
+    height: 2.75rem;
+    color: var(--acento);
+    background: var(--suave);
+    border-radius: 12px;
+}
+.puntos-clave__icono svg {
+    width: 1.4rem;
+    height: 1.4rem;
+}
+
+/* Listas de datos (beneficios y tecnologías) */
+.lista-datos {
+    display: grid;
+    gap: 1.25rem 2rem;
+    margin: 0;
+}
+.lista-datos > div {
+    padding-top: 0.75rem;
+    border-top: 3px solid var(--realce);
+}
+.lista-datos dt {
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: var(--acento);
+}
+.lista-datos dd {
+    margin: 0.25rem 0 0;
+    color: var(--apagado);
+}
+
+.dos-columnas {
+    display: grid;
+    gap: 1rem 3rem;
+}
+.dos-columnas h3 {
+    margin-top: 0.5rem;
+}
+
+/* ============================================================
+   8. COMPONENTES
+   ============================================================ */
+
+/* ---------- Bloques con borde: comparten fondo, borde y radio ---------- */
+.calculadora,
+.tarjeta,
+.pasos li,
+.diapositiva,
+form {
+    background: var(--superficie);
+    border: 1px solid var(--borde);
+    border-radius: var(--radio);
+}
+
+/* ---------- Insignias circulares: avatar, número de paso, icono de gracias, flechas ---------- */
+.avatar,
+.pasos li::before,
+.gracias__icono,
+.carrusel__boton {
+    display: grid;
+    place-items: center;
+    font-weight: 800;
+    color: var(--blanco);
+    background: var(--primario);
+    border-radius: 50%;
+}
+
+/* ---------- Tarjetas ---------- */
+.tarjetas {
+    display: grid;
+    gap: 1.25rem;
+    margin-top: 1.5rem;
+}
+
+.tarjeta {
+    padding: 1.5rem;
+    box-shadow: var(--sombra);
+    transition:
+        transform 0.25s,
+        border-color 0.25s;
+}
+.tarjeta:hover {
+    transform: translateY(-4px);
+    border-color: var(--realce);
+}
+.tarjeta h3 {
+    margin-top: 0;
+}
+.tarjeta p:last-child {
+    margin-bottom: 0;
+}
+
+.avatar {
+    width: 3.5rem;
+    height: 3.5rem;
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+}
+
+/* ---------- Pasos numerados ---------- */
+.pasos {
+    display: grid;
+    gap: 1rem;
+    margin: 1.5rem 0 0;
+    padding: 0;
+    list-style: none;
+    counter-reset: paso;
+}
+.pasos li {
+    position: relative;
+    padding: 1rem 1rem 1rem 3.75rem;
+    counter-increment: paso;
+}
+.pasos li::before {
+    content: counter(paso);
+    position: absolute;
+    left: 1rem;
+    top: 1rem;
+    width: 2rem;
+    height: 2rem;
+}
+
+/* ---------- Calculadora de ahorro ---------- */
+.calculadora {
+    display: grid;
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+    padding: 1.5rem;
+    box-shadow: var(--sombra);
+}
+.calculadora fieldset {
+    display: grid;
+    gap: 1.1rem;
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+.calculadora input[type="range"] {
+    padding: 0;
+    accent-color: var(--primario);
+    background: transparent;
+    border: 0;
+}
+
+.calculadora__resultado {
+    display: grid;
+    align-content: center;
+    gap: 0.4rem;
+    padding: 1.5rem;
+    color: var(--blanco);
+    background: var(--primario);
+    border-radius: 12px;
+}
+.calculadora__resultado p {
+    margin: 0;
+    color: var(--sobre-primario);
+}
+.calculadora__cifra {
+    font-size: clamp(2rem, 6vw, 2.8rem);
+    font-weight: 800;
+    line-height: 1.1;
+    color: var(--blanco);
+}
+
+.barra {
+    height: 0.6rem;
+    margin-top: 0.5rem;
+    overflow: hidden;
+    background: var(--vidrio-fuerte);
+    border-radius: 99px;
+}
+.barra__relleno {
+    display: block;
+    width: 0;
+    height: 100%;
+    background: var(--carbon-300);
+    border-radius: inherit;
+    transition: width 0.4s ease;
+}
+
+/* ---------- Carrusel ---------- */
+.carrusel {
+    margin-top: 2rem;
+}
+
+.carrusel__pista {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    border-radius: var(--radio);
+}
+.carrusel__pista::-webkit-scrollbar {
+    display: none;
+}
+
+.diapositiva {
+    flex: 0 0 100%;
+    display: grid;
+    gap: 2rem;
+    align-items: center;
+    padding: 1.5rem;
+    scroll-snap-align: start;
+}
+.diapositiva h3 {
+    margin-top: 0;
+}
+.diapositiva ul {
+    margin: 0;
+    padding-left: 1.2rem;
+    color: var(--apagado);
+}
+
+.carrusel__controles {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    margin-top: 1rem;
+}
+
+.carrusel__boton {
+    width: 2.75rem;
+    height: 2.75rem;
+    padding: 0;
+    font: inherit;
+    font-size: 1.2rem;
+    font-weight: 700;
+    border: 0;
+    cursor: pointer;
+}
+.carrusel__boton:hover {
+    background: var(--primario-hover);
+}
+.carrusel__boton svg {
+    width: 1.1rem;
+    height: 1.1rem;
+}
+
+.carrusel__puntos {
+    display: flex;
+    gap: 0.5rem;
+}
+.carrusel__punto {
+    width: 0.75rem;
+    height: 0.75rem;
+    padding: 0;
+    background: var(--campo-borde);
+    border: 0;
+    border-radius: 99px;
+    cursor: pointer;
+    transition:
+        width 0.3s,
+        background-color 0.3s;
+}
+.carrusel__punto[aria-current="true"] {
+    width: 2rem;
+    background: var(--acento);
+}
+
+/* ---------- Teléfono dibujado con CSS (la pantalla de la app siempre es clara) ---------- */
+.telefono {
+    justify-self: center;
+    width: min(100%, 15.5rem);
+    padding: 0.9rem 0.75rem 1.1rem;
+    font-size: 0.78rem;
+    line-height: 1.4;
+    color: var(--carbon-900);
+    background: var(--carbon-50);
+    border: 8px solid var(--carbon-900);
+    border-radius: 2rem;
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.18);
+}
+.telefono::before {
+    /* muesca superior */
+    content: "";
+    display: block;
+    width: 4.5rem;
+    height: 0.9rem;
+    margin: -0.4rem auto 0.7rem;
+    background: var(--carbon-900);
+    border-radius: 99px;
+}
+
+.telefono__titulo {
+    margin-bottom: 0.6rem;
+    font-size: 0.95rem;
+    font-weight: 800;
+    color: var(--carbon-900);
+}
+
+.telefono__hero,
+.telefono__tarjeta-credito {
+    padding: 0.8rem;
+    color: var(--blanco);
+    border-radius: 12px;
+}
+.telefono__hero {
+    background: var(--carbon-900);
+}
+.telefono__hero small {
+    display: block;
+    color: var(--carbon-300);
+}
+.telefono__hero strong {
+    display: block;
+    font-size: 1.35rem;
+    font-weight: 800;
+}
+
+.telefono__tarjeta-credito {
+    background: linear-gradient(135deg, var(--carbon-700), var(--carbon-500));
+}
+.telefono__tarjeta-credito strong {
+    display: block;
+    margin-top: 1rem;
+    letter-spacing: 0.12em;
+}
+
+.telefono__fila,
+.telefono__barras {
+    background: var(--blanco);
+    border: 1px solid var(--carbon-300);
+    border-radius: 9px;
+}
+.telefono__fila {
+    display: flex;
+    justify-content: space-between;
+    gap: 0.5rem;
+    margin-top: 0.4rem;
+    padding: 0.5rem 0.6rem;
+}
+
+.telefono__chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3rem;
+    margin-top: 0.5rem;
+}
+.telefono__chips span {
+    padding: 0.15rem 0.55rem;
+    background: #edf1f5;
+    border-radius: 99px;
+}
+.telefono__chips .activo {
+    color: var(--blanco);
+    background: var(--carbon-900);
+}
+
+.telefono__barras {
+    display: flex;
+    align-items: flex-end;
+    gap: 0.35rem;
+    height: 5rem;
+    margin-top: 0.6rem;
+    padding: 0.5rem;
+}
+.telefono__barras span {
+    flex: 1;
+    background: var(--carbon-500);
+    border-radius: 4px 4px 0 0;
+}
+.telefono__barras span:nth-child(even) {
+    background: var(--carbon-900);
+}
+
+.neg,
+.pos {
+    font-weight: 700;
+}
+.neg {
+    color: var(--rojo);
+}
+.pos {
+    color: var(--verde-ok);
+}
+
+/* ---------- Acordeón ---------- */
+.acordeon {
+    margin-top: 1.5rem;
+    border-top: 1px solid var(--borde);
+}
+.acordeon__item {
+    border-bottom: 1px solid var(--borde);
+}
+.acordeon__item h3 {
+    margin: 0;
+    font-size: 1.08rem;
+}
+
+.acordeon__boton {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    width: 100%;
+    padding: 1.1rem 0.25rem;
+    font: inherit;
+    font-weight: 700;
+    text-align: left;
+    color: var(--acento);
+    background: none;
+    border: 0;
+    cursor: pointer;
+}
+
+/* Icono "+" que se convierte en "−" al abrir */
+.acordeon__icono {
+    position: relative;
+    flex: none;
+    width: 1.1rem;
+    height: 1.1rem;
+}
+.acordeon__icono::before,
+.acordeon__icono::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    margin-top: -1px;
+    background: currentColor;
+    border-radius: 2px;
+    transition: transform 0.3s;
+}
+.acordeon__icono::after {
+    transform: rotate(90deg);
+}
+.acordeon__boton[aria-expanded="true"] .acordeon__icono::after {
+    transform: none;
+}
+
+/* Con JavaScript el panel se anima abriéndose; sin él, queda siempre visible */
+.js .acordeon__panel {
+    display: grid;
+    grid-template-rows: 0fr;
+    visibility: hidden;
+    transition:
+        grid-template-rows 0.3s ease,
+        visibility 0.3s;
+}
+.js .acordeon__panel.abierto {
+    grid-template-rows: 1fr;
+    visibility: visible;
+}
+
+.acordeon__contenido {
+    overflow: hidden;
+}
+.acordeon__contenido p {
+    margin: 0;
+    padding: 0 0.25rem 1.1rem;
+    color: var(--apagado);
+}
+
+/* ============================================================
+   9. FORMULARIO Y PÁGINA DE GRACIAS
+   ============================================================ */
+.contacto {
+    display: grid;
+    gap: 2rem;
+}
+
+form {
+    display: grid;
+    gap: 1.1rem;
+    padding: 1.5rem;
+    transition: background-color 0.3s;
+}
+
+.campo {
+    display: grid;
+    gap: 0.35rem;
+}
+label {
+    font-size: 0.95rem;
+    font-weight: 700;
+}
+
+input,
+textarea,
+select {
+    width: 100%;
+    padding: 0.75rem 0.9rem;
+    font: inherit;
+    color: var(--tinta);
+    background: var(--fondo);
+    border: 1.5px solid var(--campo-borde);
+    border-radius: var(--radio-chico);
+    transition: border-color 0.2s;
+}
+textarea {
+    min-height: 8rem;
+    resize: vertical;
+}
+::placeholder {
+    color: var(--placeholder);
+}
+
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+    outline-offset: 1px;
+    border-color: var(--acento);
+}
+
+/* Ayuda, errores y estados del campo */
+.campo__ayuda,
+.campo__error {
+    margin: 0;
+    font-size: 0.88rem;
+}
+.campo__ayuda {
+    color: var(--apagado);
+}
+.campo__error {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--peligro);
+}
+.campo__error:empty {
+    display: none;
+}
+
+.campo--error :is(input, textarea, select) {
+    border-color: var(--peligro);
+}
+.campo--ok :is(input, textarea, select) {
+    border-color: var(--ingreso);
+}
+
+/* Casilla de aceptación */
+.campo--casilla {
+    grid-template-columns: auto 1fr;
+    align-items: start;
+    column-gap: 0.6rem;
+}
+.campo--casilla input {
+    width: 1.15rem;
+    height: 1.15rem;
+    margin-top: 0.3rem;
+    accent-color: var(--primario);
+}
+.campo--casilla label {
+    font-weight: 500;
+}
+.campo--casilla .campo__error {
+    grid-column: 1 / -1;
+}
+
+.oculto-bot {
+    display: none;
+} /* campo trampa para bots (Netlify honeypot) */
+
+/* Página de gracias */
+.gracias {
+    display: grid;
+    justify-items: start;
+    gap: 0.5rem;
+    padding-block: 5rem;
+}
+.gracias__icono {
+    width: 4.5rem;
+    height: 4.5rem;
+    margin-bottom: 1rem;
+}
+.gracias__icono svg {
+    width: 2.2rem;
+    height: 2.2rem;
+}
+
+/* ============================================================
+   10. PIE DE PÁGINA (siempre carbón oscuro)
+   ============================================================ */
+.pie {
+    padding-block: 2.5rem 1.75rem;
+    font-size: 0.95rem;
+    color: var(--carbon-300);
+    background: var(--carbon-900);
+    border-top: 1px solid var(--carbon-700);
+}
+.pie__interior {
+    display: grid;
+    gap: 1.5rem;
+}
+.pie p {
+    margin: 0;
+    max-width: none;
+}
+.pie__marca {
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: var(--blanco);
+}
+.pie__menu {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.25rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+.pie a {
+    color: var(--sobre-primario);
+}
+.pie a:hover {
+    color: var(--blanco);
+}
+.pie__legal {
+    padding-top: 1.25rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+/* ============================================================
+   11. RESPONSIVO, IMPRESIÓN Y MOVIMIENTO REDUCIDO
+   ============================================================ */
+
+/* ---------- Móvil: menú desplegable ---------- */
+@media (max-width: 47.99rem) {
+    .js .menu-boton {
+        display: grid;
+    }
+    .js .cabecera__acciones {
+        order: 2;
+    }
+    .js .navegacion {
+        display: none;
+        order: 3;
+        flex-basis: 100%;
+    }
+    .js .cabecera--abierta .navegacion {
+        display: block;
+    }
+    .js .menu {
+        flex-direction: column;
+        padding-block: 0.5rem 0.75rem;
+    }
+    .js .menu a {
+        padding: 0.7rem 0.9rem;
+    }
+
+    /* Sin JavaScript, el menú queda visible en una sola fila */
+    html:not(.js) .menu {
+        gap: 0;
+        margin-inline: -0.55rem;
+    }
+    html:not(.js) .menu a {
+        padding: 0.4rem 0.55rem;
+        font-size: 0.92rem;
+    }
+}
+
+/* ---------- Tablet y escritorio: diseños de columnas ---------- */
+@media (min-width: 48rem) {
+    .portada__interior {
+        grid-template-columns: 1.4fr 1fr;
+        padding-block: 4.5rem 5rem;
+    }
+    .portada__icono {
+        justify-self: end;
+        width: min(100%, 17rem);
+    }
+    .portada__foto {
+        justify-self: end;
+    }
+
+    .proyecto {
+        grid-template-columns: minmax(0, 24rem) 1fr;
+        gap: 3.5rem;
+    }
+    .con-imagen {
+        grid-template-columns: 1fr 15rem;
+        gap: 3rem;
+    }
+    .encabezado-con-imagen {
+        grid-template-columns: 1.2fr 1fr;
+        gap: 3rem;
+        margin-bottom: 0.5rem;
+    }
+    .historia {
+        grid-template-columns: 1fr 1fr;
+        gap: 3rem;
+    }
+    .contacto {
+        grid-template-columns: 1fr 1.2fr;
+        gap: 3rem;
+        align-items: start;
+    }
+
+    .lista-datos--dos,
+    .dos-columnas,
+    .tarjetas {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .tarjetas--tres {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .calculadora {
+        grid-template-columns: 1.2fr 1fr;
+        padding: 2rem;
+    }
+    .diapositiva {
+        grid-template-columns: auto 1fr;
+        gap: 3rem;
+        padding: 2.5rem 3rem;
+    }
+
+    .pie__interior {
+        grid-template-columns: 1fr auto;
+        align-items: start;
+    }
+    .pie__legal {
+        grid-column: 1 / -1;
+    }
+}
+
+/* ---------- Teléfonos pequeños ---------- */
+@media (max-width: 29.99rem) {
+    body {
+        font-size: 1rem;
+    }
+    .contenedor {
+        width: min(100% - 1.5rem, var(--ancho));
+    }
+    .portada__acciones .boton,
+    form .boton {
+        width: 100%;
+        text-align: center;
+    }
+    .calculadora,
+    form,
+    .tarjeta {
+        padding: 1.1rem;
+    }
+    .diapositiva {
+        padding: 1rem;
+    }
+    .gracias {
+        padding-block: 3rem;
+    }
+}
+
+/* ---------- Pantallas muy grandes ---------- */
+@media (min-width: 80rem) {
+    :root {
+        --ancho: 74rem;
+    }
+    body {
+        font-size: 1.125rem;
+    }
+}
+
+/* ---------- Impresión ---------- */
+@media print {
+    .cabecera,
+    .carrusel__controles,
+    .boton-icono {
+        display: none;
+    }
+    body {
+        color: #000;
+        background: #fff;
+    }
+}
+
+/* ---------- Movimiento reducido ---------- */
+/* !important para que gane siempre sobre cualquier animación o transición. */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
