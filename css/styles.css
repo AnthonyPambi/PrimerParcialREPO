@@ -391,3 +391,17 @@ textarea:focus-visible {
         padding-block: 4.5rem;
     }
 }
+
+/* ---------- Accesibilidad: movimiento reducido ---------- */
+/* Se usa !important para que esta regla gane siempre sobre cualquier
+   animación, transición o desplazamiento suave definido en otra parte. */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
