@@ -6,7 +6,7 @@ Proyecto del Primer Parcial de **Desarrollo de Aplicaciones Web**.
 
 **Autores:** Anthony Pambi y Wilmer Medina
 
-🔗 **Sitio publicado:** [enlace de Netlify]
+🔗 **Sitio publicado:** primerparcialrepo.netlify.app
 
 ## Páginas
 
